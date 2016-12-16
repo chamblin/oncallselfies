@@ -1,0 +1,8 @@
+<% tweets.each do |tweet| %>
+  <h3><a href="<%= tweet.url %>"><%= tweet.text %></a></h3>
+  <% if tweet.media? %>
+    <% tweet.media.select{|m| m.is_a?(Twitter::Media::Photo)}.each do |media| %>
+    <img src="<%= media.media_url_https %>" />
+    <% end %>
+  <% end %>
+<% end %>
