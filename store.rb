@@ -12,6 +12,12 @@ class SelfieStore
     end
   end
 
+  def delete(tweet_id)
+    @pstore.transaction do
+      @pstore[:tweets].delete_if { |tweet| tweet[:id] == tweet_id }
+    end
+  end
+
   def tweets
     @pstore.transaction(true) do
       @pstore[:tweets].reverse
